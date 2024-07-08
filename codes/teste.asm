@@ -1,5 +1,5 @@
 ;-----------------------------;
-; Shift-left and Shift-right ;
+; Shift-left and Shift-right  ;
 ;-----------------------------;
 start:  LDI 1
 left:   OUT
