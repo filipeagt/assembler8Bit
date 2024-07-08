@@ -9,16 +9,34 @@ semComentario = ''
 
 labels = {}
 
+enderecosValidos = {'0H':'0', 
+                    '1H':'1', 
+                    '2H':'2', 
+                    '3H':'3',
+                    '4H':'4',
+                    '5H':'5',
+                    '6H':'6',
+                    '7H':'7',
+                    '8H':'8',
+                    '9H':'9',
+                    'AH':'10',
+                    'BH':'11',
+                    'CH':'12',
+                    'DH':'13',
+                    'EH':'14',
+                    'FH':'15'}
+
 nlinha = 0
 
 for linha in fonte:
     if linha[0] != ';':        
         linha =  linha.split()
         for palavra in linha:
+            palavra = palavra.upper() #Case insensitive
             if palavra[-1] == ':': #Tratamento das labels
                 labels.update({palavra[:-1] : str(nlinha)})
                 continue
-            elif palavra[0] != ';':
+            elif palavra[0] != ';': #Ignora os cometários
                 semComentario += (palavra + ' ')
             else:
                 break
@@ -32,9 +50,11 @@ tmp = open('tmp.txt', 'r')
 
 for linha in tmp:
     linha = linha.split()
-    for palavra in linha:
+    for palavra in linha:        
         if palavra in labels.keys():
             palavra = labels[palavra]
+        elif palavra in enderecosValidos.keys():
+            palavra = enderecosValidos[palavra]
         semComentario += (palavra + ' ')
     
     semComentario = semComentario.rstrip() + '\n'
