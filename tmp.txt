@@ -1,5 +1,5 @@
-LDI 0
+LDI 1
 OUT
-ADD 4
-JMP 1
-2
+SHL
+JNZ 1
+JMP 0
